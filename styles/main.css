@@ -114,6 +114,10 @@ html {
   z-index: 2;
 }
 
+.hero-section .lead {
+  font-weight: 500;
+}
+
 .hero-section::before {
   content: '';
   position: absolute;
