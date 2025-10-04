@@ -383,6 +383,62 @@ html {
   }
 }
 
+/* Debris of the Week Section Styles */
+.debris-stats {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  border-radius: 10px;
+  border: 1px solid #444;
+}
+
+.stat-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #5cac93;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #cccccc;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.debris-image-container {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  border: 2px solid #5cac93;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 20px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.debris-image {
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Responsive adjustments for debris section */
+@media (max-width: 768px) {
+  .debris-image {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+}
+
 /* Donations Section Styles */
 .donations-card {
   background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
