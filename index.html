@@ -10,6 +10,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script> 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
   
 <!-- HighCharts -->
   <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -22,6 +25,13 @@
   <script>
     function smoothScrollToChart() {
       document.getElementById('chart-section').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+    
+    function smoothScrollToORDEM() {
+      document.getElementById('ordem-section').scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
@@ -52,15 +62,147 @@
     <div id="chart-section" class="px-4 pt-5 my-5 text-center border-bottom">
       <h1 class="display-4 fw-bold text-body-emphasis">Space Debris Analysis</h1>
       <div class="col-lg-6 mx-auto">
-        <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+        <p class="lead mb-4">Track the evolution of space debris over time with our comprehensive analysis. From the early days of space exploration to the present, witness how orbital debris has grown and the challenges it presents to space operations.</p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-          <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Primary button</button>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
+          <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3" onclick="smoothScrollToORDEM()">Try ORDEM 3.2 Model</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4">Learn More</button>
         </div>
       </div>
+      
       <div class="overflow-hidden">
         <div class="container px-5">
           <div id="highcharts-container" class="border rounded-3 shadow-lg mb-4" style="width: 100%; height: 500px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <!-- ORDEM 3.2 Section -->
+    <div id="ordem-section" class="px-4 pt-5 my-5 text-center border-bottom">
+      <h1 class="display-4 fw-bold text-body-emphasis">ORDEM 3.2 - Orbital Debris Environment Model</h1>
+      <div class="col-lg-8 mx-auto">
+        <p class="lead mb-4">Simulate orbital debris environment using NASA's ORDEM 3.2 model. Enter your parameters below to generate debris distribution charts and analysis.</p>
+      </div>
+      
+      <!-- Input Form Section -->
+      <div class="container my-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="card bg-dark text-light ordem-form-card">
+              <div class="card-header">
+                <h3 class="card-title mb-0">Model Parameters</h3>
+              </div>
+              <div class="card-body">
+                <form id="ordem-form">
+                  <div class="row g-3">
+                    <!-- Altitude Range -->
+                    <div class="col-md-6">
+                      <label for="altitude-min" class="form-label">Minimum Altitude (km)</label>
+                      <input type="number" class="form-control" id="altitude-min" value="200" min="200" max="2000" step="50">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="altitude-max" class="form-label">Maximum Altitude (km)</label>
+                      <input type="number" class="form-control" id="altitude-max" value="2000" min="200" max="2000" step="50">
+                    </div>
+                    
+                    <!-- Inclination Range -->
+                    <div class="col-md-6">
+                      <label for="inclination-min" class="form-label">Minimum Inclination (degrees)</label>
+                      <input type="number" class="form-control" id="inclination-min" value="0" min="0" max="180" step="5">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="inclination-max" class="form-label">Maximum Inclination (degrees)</label>
+                      <input type="number" class="form-control" id="inclination-max" value="180" min="0" max="180" step="5">
+                    </div>
+                    
+                    <!-- Debris Size Range -->
+                    <div class="col-md-6">
+                      <label for="size-min" class="form-label">Minimum Debris Size (cm)</label>
+                      <input type="number" class="form-control" id="size-min" value="0.1" min="0.01" max="1000" step="0.1">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="size-max" class="form-label">Maximum Debris Size (cm)</label>
+                      <input type="number" class="form-control" id="size-max" value="1000" min="0.01" max="1000" step="0.1">
+                    </div>
+                    
+                    <!-- Time Period -->
+                    <div class="col-md-6">
+                      <label for="start-year" class="form-label">Start Year</label>
+                      <input type="number" class="form-control" id="start-year" value="2020" min="1957" max="2030" step="1">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="end-year" class="form-label">End Year</label>
+                      <input type="number" class="form-control" id="end-year" value="2030" min="1957" max="2030" step="1">
+                    </div>
+                    
+                    <!-- Chart Type Selection -->
+                    <div class="col-12">
+                      <label class="form-label">Chart Type</label>
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="chart-type" id="altitude-dist" value="altitude" checked>
+                            <label class="form-check-label" for="altitude-dist">Altitude Distribution</label>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="chart-type" id="size-dist" value="size">
+                            <label class="form-check-label" for="size-dist">Size Distribution</label>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="chart-type" id="temporal-evolution" value="temporal">
+                            <label class="form-check-label" for="temporal-evolution">Temporal Evolution</label>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="chart-type" id="inclination-dist" value="inclination">
+                            <label class="form-check-label" for="inclination-dist">Inclination Distribution</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+                    <button type="button" class="btn btn-primary btn-lg px-5" onclick="generateORDEMChart()">
+                      <i class="bi bi-graph-up"></i> Generate Analysis
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-lg px-4" onclick="resetForm()">
+                      <i class="bi bi-arrow-clockwise"></i> Reset
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- ORDEM Chart Display Section -->
+      <div class="overflow-hidden">
+        <div class="container px-5">
+          <div id="ordem-chart-container" class="border rounded-3 shadow-lg mb-4" style="width: 100%; height: 600px;"></div>
+        </div>
+      </div>
+      
+      <!-- Results Summary -->
+      <div class="container my-4">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div id="results-summary" class="card bg-dark text-light results-summary-card" style="display: none;">
+              <div class="card-header">
+                <h4 class="card-title mb-0">Analysis Results</h4>
+              </div>
+              <div class="card-body">
+                <div id="summary-content"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
