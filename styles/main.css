@@ -232,7 +232,7 @@ html {
 .floating-donation-btn {
   position: fixed;
   top: 20px;
-  left: 20px;
+  right: 20px;
   width: 60px;
   height: 60px;
   background: linear-gradient(135deg, #5cac93 0%, #7bc4a8 100%);
