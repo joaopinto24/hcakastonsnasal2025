@@ -141,32 +141,32 @@ html {
 }
 
 .ordem-form-card .card-header {
-  background: linear-gradient(90deg, #4a9eff 0%, #6bb6ff 100%);
+  background: linear-gradient(90deg, #5cac93 0%, #7bc4a8 100%);
   border-bottom: 1px solid #555;
   color: #000;
   font-weight: 600;
 }
 
 .form-control:focus {
-  border-color: #4a9eff;
-  box-shadow: 0 0 0 0.2rem rgba(74, 158, 255, 0.25);
+  border-color: #5cac93;
+  box-shadow: 0 0 0 0.2rem rgba(92, 172, 147, 0.25);
 }
 
 .form-check-input:checked {
-  background-color: #4a9eff;
-  border-color: #4a9eff;
+  background-color: #5cac93;
+  border-color: #5cac93;
 }
 
 .btn-primary {
-  background: linear-gradient(45deg, #4a9eff, #6bb6ff);
+  background: linear-gradient(45deg, #5cac93, #7bc4a8);
   border: none;
   transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(45deg, #3a8eef, #5ba6ef);
+  background: linear-gradient(45deg, #4a9a7f, #6bb098);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(92, 172, 147, 0.3);
 }
 
 .btn-outline-secondary:hover {
@@ -218,7 +218,7 @@ html {
   width: 20px;
   height: 20px;
   border: 3px solid #f3f3f3;
-  border-top: 3px solid #4a9eff;
+  border-top: 3px solid #5cac93;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
