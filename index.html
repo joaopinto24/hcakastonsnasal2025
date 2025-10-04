@@ -34,6 +34,77 @@
         block: 'start'
       });
     }
+    
+    function smoothScrollToDonations() {
+      document.getElementById('donations-section').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+
+    // Donations counter animation
+    function animateCounter(elementId, targetValue, duration = 2000, prefix = '', suffix = '') {
+      const element = document.getElementById(elementId);
+      const startValue = 0;
+      const increment = targetValue / (duration / 16); // 60fps
+      let currentValue = startValue;
+      
+      const timer = setInterval(() => {
+        currentValue += increment;
+        if (currentValue >= targetValue) {
+          currentValue = targetValue;
+          clearInterval(timer);
+        }
+        
+        if (elementId === 'amount-counter') {
+          element.textContent = prefix + Math.floor(currentValue).toLocaleString() + suffix;
+        } else if (elementId === 'goal-counter') {
+          element.textContent = Math.floor(currentValue) + suffix;
+        } else {
+          element.textContent = prefix + Math.floor(currentValue).toLocaleString() + suffix;
+        }
+      }, 16);
+    }
+
+    // Intersection Observer for donations counter
+    function initDonationsCounter() {
+      const donationsSection = document.getElementById('donations-section');
+      let hasAnimated = false;
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !hasAnimated) {
+            hasAnimated = true;
+            
+            // Animate counters with different targets
+            animateCounter('donations-counter', 1247, 2000, '', '');
+            animateCounter('amount-counter', 45680, 2500, '$', '');
+            animateCounter('goal-counter', 73, 3000, '', '%');
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      observer.observe(donationsSection);
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      initDonationsCounter();
+      initFloatingButton();
+    });
+
+    // Floating button functionality
+    function initFloatingButton() {
+      const floatingBtn = document.getElementById('floating-donation-btn');
+      
+      // Add pulse animation every 10 seconds
+      setInterval(() => {
+        floatingBtn.classList.add('pulse');
+        setTimeout(() => {
+          floatingBtn.classList.remove('pulse');
+        }, 2000);
+      }, 10000);
+    }
   </script>
 
   <link rel="stylesheet" href="styles/main.css">
@@ -41,6 +112,11 @@
 
 
 <body>
+  <!-- Floating Donation Button -->
+  <div id="floating-donation-btn" class="floating-donation-btn" onclick="smoothScrollToDonations()">
+    <i class="bi bi-currency-dollar"></i>
+  </div>
+
   <main>
     <h1 class="visually-hidden">Heroes examples</h1>
 
@@ -282,6 +358,48 @@
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
             <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">Custom button</button>
             <button type="button" class="btn btn-outline-light btn-lg px-4">Secondary</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <!-- Donations Counter Section -->
+    <div id="donations-section" class="px-4 pt-5 my-5 text-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="donations-card">
+              <div class="donations-header">
+                <h2 class="display-6 fw-bold text-body-emphasis mb-4">Support Our Mission</h2>
+                <p class="lead mb-4">Help us clean up space and preserve the orbital environment for future generations</p>
+              </div>
+              
+              <div class="donations-counter">
+                <div class="counter-item">
+                  <div class="counter-number" id="donations-counter">0</div>
+                  <div class="counter-label">Donations Received</div>
+                </div>
+                <div class="counter-item">
+                  <div class="counter-number" id="amount-counter">$0</div>
+                  <div class="counter-label">Total Raised</div>
+                </div>
+                <div class="counter-item">
+                  <div class="counter-number" id="goal-counter">0%</div>
+                  <div class="counter-label">Goal Progress</div>
+                </div>
+              </div>
+              
+              <div class="donations-actions mt-4">
+                <button type="button" class="btn btn-primary btn-lg px-5 me-3">
+                  <i class="bi bi-heart-fill"></i> Donate Now
+                </button>
+                <button type="button" class="btn btn-outline-secondary btn-lg px-4">
+                  <i class="bi bi-share"></i> Share
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
