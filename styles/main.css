@@ -280,6 +280,109 @@ html {
   animation: pulse 2s infinite;
 }
 
+/* Impact Visualization Styles */
+.impact-visualization {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  border: 2px solid #5cac93;
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(92, 172, 147, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.impact-visualization::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(92, 172, 147, 0.1) 0%, rgba(92, 172, 147, 0.05) 100%);
+  z-index: 1;
+}
+
+.impact-visualization > * {
+  position: relative;
+  z-index: 2;
+}
+
+.impact-equation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.impact-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #5cac93;
+  text-shadow: 0 0 20px rgba(92, 172, 147, 0.3);
+}
+
+.impact-equals {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #ffffff;
+}
+
+.impact-result {
+  text-align: center;
+}
+
+.impact-value {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #5cac93;
+  text-shadow: 0 0 20px rgba(92, 172, 147, 0.3);
+  line-height: 1;
+}
+
+.impact-unit {
+  font-size: 1.2rem;
+  color: #cccccc;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 0.5rem;
+}
+
+.impact-description p {
+  color: #cccccc;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Responsive adjustments for impact visualization */
+@media (max-width: 768px) {
+  .impact-visualization {
+    padding: 2rem 1rem;
+  }
+  
+  .impact-equation {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .impact-number {
+    font-size: 2.5rem;
+  }
+  
+  .impact-value {
+    font-size: 3rem;
+  }
+  
+  .impact-equals {
+    font-size: 2rem;
+  }
+}
+
 /* Donations Section Styles */
 .donations-card {
   background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
